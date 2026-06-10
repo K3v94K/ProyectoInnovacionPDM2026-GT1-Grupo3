@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.androiddevs.runningapp"
-        minSdkVersion 23 // Requisito estricto de tu materia (¡Súper protegido!)
+        minSdkVersion 22 // Alineado con la guia: compatibilidad desde Android 5.1/API 22
         targetSdkVersion 34 // 🌟 ALINEADO: Garantiza el mismo comportamiento en todos los celulares del equipo
         versionCode 1
         versionName "1.0"

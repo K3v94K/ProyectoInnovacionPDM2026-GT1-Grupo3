@@ -17,6 +17,8 @@ class Constants {
         // Tracking Options
         const val LOCATION_UPDATE_INTERVAL = 5000L
         const val FASTEST_LOCATION_UPDATE_INTERVAL = 2000L
+        const val MAX_ACCEPTABLE_LOCATION_ACCURACY = 25f
+        const val MIN_DISTANCE_BETWEEN_ROUTE_POINTS = 4f
 
         // Map Options
         const val POLYLINE_COLOR = Color.RED

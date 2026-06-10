@@ -30,6 +30,8 @@ import com.androiddevs.runningapp.other.Constants.Companion.EXTRA_GOAL_VALUE
 import com.androiddevs.runningapp.other.Constants.Companion.FASTEST_LOCATION_UPDATE_INTERVAL
 import com.androiddevs.runningapp.other.Constants.Companion.GOAL_REACHED_NOTIFICATION_ID
 import com.androiddevs.runningapp.other.Constants.Companion.LOCATION_UPDATE_INTERVAL
+import com.androiddevs.runningapp.other.Constants.Companion.MAX_ACCEPTABLE_LOCATION_ACCURACY
+import com.androiddevs.runningapp.other.Constants.Companion.MIN_DISTANCE_BETWEEN_ROUTE_POINTS
 import com.androiddevs.runningapp.other.Constants.Companion.NOTIFICATION_CHANNEL_ID
 import com.androiddevs.runningapp.other.Constants.Companion.NOTIFICATION_CHANNEL_NAME
 import com.androiddevs.runningapp.other.Constants.Companion.NOTIFICATION_ID
@@ -218,6 +220,11 @@ class TrackingService : LifecycleService() {
         location?.let {
             val pos = LatLng(it.latitude, it.longitude)
             currentLocation.postValue(pos)
+
+            if (!isReliableRoutePoint(it)) {
+                return
+            }
+
             pathPoints.value?.apply {
                 if (isNotEmpty()) {
                     last().add(pos)
@@ -225,6 +232,28 @@ class TrackingService : LifecycleService() {
                 }
             }
         }
+    }
+
+    private fun isReliableRoutePoint(location: Location): Boolean {
+        if (location.hasAccuracy() && location.accuracy > MAX_ACCEPTABLE_LOCATION_ACCURACY) {
+            return false
+        }
+
+        val lastPoint = pathPoints.value
+            ?.lastOrNull()
+            ?.lastOrNull()
+            ?: return true
+
+        val distanceFromLastPoint = FloatArray(1)
+        Location.distanceBetween(
+            lastPoint.latitude,
+            lastPoint.longitude,
+            location.latitude,
+            location.longitude,
+            distanceFromLastPoint
+        )
+
+        return distanceFromLastPoint[0] >= MIN_DISTANCE_BETWEEN_ROUTE_POINTS
     }
 
     private fun updateCurrentLocation(location: Location?) {
