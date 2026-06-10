@@ -17,16 +17,16 @@ class CancelRunDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialogTheme)
-            .setTitle("Cancel the Run?")
-            .setMessage("Are you sure that you want to cancel the current run and delete its data?")
+            .setTitle(getString(R.string.cancel_run_title))
+            .setMessage(getString(R.string.cancel_run_message))
             .setIcon(R.drawable.ic_delete)
-            .setPositiveButton("Yes") { _, _ ->
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
                 yesListener?.let { yes ->
                     yes()
                 }
 
             }
-            .setNegativeButton("No") { dialogInterface, _ ->
+            .setNegativeButton(getString(R.string.no)) { dialogInterface, _ ->
                 dialogInterface.cancel()
             }
             .create()

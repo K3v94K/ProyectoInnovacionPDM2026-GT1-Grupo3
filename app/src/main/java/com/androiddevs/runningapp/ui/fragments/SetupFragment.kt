@@ -52,7 +52,7 @@ class SetupFragment : Fragment(R.layout.fragment_setup) {
             if (success) {
                 findNavController().navigate(R.id.action_setupFragment2_to_runFragment2)
             } else {
-                Snackbar.make(requireView(), "Please enter all the fields.", Snackbar.LENGTH_SHORT)
+                Snackbar.make(requireView(), getString(R.string.fill_all_fields), Snackbar.LENGTH_SHORT)
                     .show()
             }
         }
@@ -76,7 +76,7 @@ class SetupFragment : Fragment(R.layout.fragment_setup) {
             .putBoolean(KEY_FIRST_TIME_TOGGLE, false)
             .apply()
 
-        val toolbarText = "Let's go, $name!"
+        val toolbarText = getString(R.string.toolbar_lets_go, name)
 
         activity?.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
             val tvToolbarTitle = toolbar.findViewById<TextView>(R.id.tvToolbarTitle)

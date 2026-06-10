@@ -36,6 +36,7 @@ class Constants {
         const val NOTIFICATION_CHANNEL_ID = "tracking_channel"
         const val NOTIFICATION_CHANNEL_NAME = "Tracking"
         const val NOTIFICATION_ID = 1
+        const val GOAL_REACHED_NOTIFICATION_ID = 2
 
         // Shared Preferences
         const val SHARED_PREFERENCES_NAME = "sharedPref"
@@ -48,5 +49,7 @@ class Constants {
         const val ACTION_START_OR_RESUME_SERVICE = "ACTION_START_SERVICE"
         const val ACTION_PAUSE_SERVICE = "ACTION_PAUSE_SERVICE"
         const val ACTION_STOP_SERVICE = "ACTION_STOP_SERVICE"
+        const val EXTRA_GOAL_TYPE = "EXTRA_GOAL_TYPE"
+        const val EXTRA_GOAL_VALUE = "EXTRA_GOAL_VALUE"
     }
 }

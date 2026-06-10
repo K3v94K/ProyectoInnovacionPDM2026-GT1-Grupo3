@@ -34,9 +34,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         btnApplyChanges.setOnClickListener {
             val success = applyChangesToSharedPref(etName, etWeight)
             if(success) {
-                Snackbar.make(requireView(), "Saved changes", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(requireView(), getString(R.string.save_changes_success), Snackbar.LENGTH_SHORT).show()
             } else {
-                Snackbar.make(requireView(), "Please fill out all the fields", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(requireView(), getString(R.string.fill_all_fields), Snackbar.LENGTH_SHORT).show()
             }
         }
     }
@@ -64,7 +64,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             .putFloat(KEY_WEIGHT, weightValue)
             .apply()
 
-        val toolbarText = "Let's go, $nameText!"
+        val toolbarText = getString(R.string.toolbar_lets_go, nameText)
 
         // 🌟 CORREGIDO: Encontramos la Toolbar y su TextView de manera segura y sin Synthetics
         activity?.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->

@@ -6,23 +6,26 @@
     <fragment
         android:id="@+id/runFragment2"
         android:name="com.androiddevs.runningapp.ui.fragments.RunFragment"
-        android:label="RunFragment" >
+        android:label="Rutas" >
         <action
             android:id="@+id/action_runFragment2_to_trackingFragment"
             app:destination="@id/trackingFragment" />
+        <action
+            android:id="@+id/action_runFragment2_to_runDetailFragment"
+            app:destination="@id/runDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.androiddevs.runningapp.ui.fragments.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="Ajustes" />
     <fragment
         android:id="@+id/statisticsFragment"
         android:name="com.androiddevs.runningapp.ui.fragments.StatisticsFragment"
-        android:label="StatisticsFragment" />
+        android:label="Estadisticas" />
     <fragment
         android:id="@+id/setupFragment2"
         android:name="com.androiddevs.runningapp.ui.fragments.SetupFragment"
-        android:label="SetupFragment" >
+        android:label="Configuracion" >
         <action
             android:id="@+id/action_setupFragment2_to_runFragment2"
             app:destination="@id/runFragment2" />
@@ -30,11 +33,15 @@
     <fragment
         android:id="@+id/trackingFragment"
         android:name="com.androiddevs.runningapp.ui.fragments.TrackingFragment"
-        android:label="TrackingFragment" >
+        android:label="Entrenamiento" >
         <action
             android:id="@+id/action_trackingFragment_to_runFragment2"
             app:destination="@id/runFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/runDetailFragment"
+        android:name="com.androiddevs.runningapp.ui.fragments.RunDetailFragment"
+        android:label="Detalle de ruta" />
 
     <action android:id="@+id/action_global_trackingFragment"
         app:destination="@id/trackingFragment"

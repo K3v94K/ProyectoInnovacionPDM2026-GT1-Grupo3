@@ -1,11 +1,16 @@
 package com.androiddevs.runningapp.ui
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.androiddevs.runningapp.R
@@ -21,6 +26,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var name: String
 
     private var navHostFragment: NavHostFragment? = null
+    private val notificationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { /* El usuario puede activar/desactivar notificaciones desde Ajustes. */ }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
             host.navController.addOnDestinationChangedListener { _, destination, _ ->
                 when (destination.id) {
-                    R.id.setupFragment2, R.id.trackingFragment -> bottomNavigationView.visibility = View.GONE
+                    R.id.setupFragment2, R.id.trackingFragment, R.id.runDetailFragment -> bottomNavigationView.visibility = View.GONE
                     else -> bottomNavigationView.visibility = View.VISIBLE
                 }
             }
@@ -52,9 +60,11 @@ class MainActivity : AppCompatActivity() {
         navigateToTrackingFragmentIfNeeded(intent)
 
         if (name.isNotEmpty()) {
-            val toolbarTitle = "Let's go, $name!"
+            val toolbarTitle = getString(R.string.toolbar_lets_go, name)
             tvToolbarTitle?.text = toolbarTitle
         }
+
+        requestNotificationPermissionIfNeeded()
     }
 
     // Checks if we launched the activity from the notification
@@ -66,6 +76,18 @@ class MainActivity : AppCompatActivity() {
     private fun navigateToTrackingFragmentIfNeeded(intent: Intent?) {
         if (intent?.action == ACTION_SHOW_TRACKING_FRAGMENT) {
             navHostFragment?.navController?.navigate(R.id.action_global_trackingFragment)
+        }
+    }
+
+    private fun requestNotificationPermissionIfNeeded() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            return
+        }
+
+        val permission = Manifest.permission.POST_NOTIFICATIONS
+        val hasPermission = ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+        if (!hasPermission) {
+            notificationPermissionLauncher.launch(permission)
         }
     }
 }

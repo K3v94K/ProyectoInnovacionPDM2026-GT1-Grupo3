@@ -1,32 +1,100 @@
 <resources>
     <string name="app_name">RunningApp</string>
-    <string name="your_runs">Your Runs</string>
-    <string name="statistics">Statistics</string>
-    <string name="settings">Settings</string>
-    <string name="sort_by">Sort by:</string>
-    <string name="cd_add_run">Record a new run</string>
-    <string name="welcome_message">Welcome!\nPlease enter your name and weight.</string>
-    <string name="hint_name">Your Name</string>
-    <string name="hint_weight">Your Weight</string>
+    <string name="your_runs">Mis rutas</string>
+    <string name="statistics">Estadisticas</string>
+    <string name="settings">Ajustes</string>
+    <string name="sort_by">Ordenar por:</string>
+    <string name="cd_add_run">Registrar una nueva ruta</string>
+    <string name="welcome_message">Bienvenido!\nIngresa tu nombre y peso.</string>
+    <string name="hint_name">Tu nombre</string>
+    <string name="hint_weight">Tu peso</string>
     <string name="unit_kg">kg</string>
-    <string name="btn_continue">Continue</string>
-
-
-    <string name="btn_apply_changes">Apply Changes</string>
+    <string name="btn_continue">Continuar</string>
+    <string name="btn_apply_changes">Aplicar cambios</string>
 
     <string-array name="filter_options">
-        <item>Date</item>
-        <item>Running Time</item>
-        <item>Distance</item>
-        <item>Average Speed</item>
-        <item>Calories Burned</item>
+        <item>Fecha</item>
+        <item>Tiempo</item>
+        <item>Distancia</item>
+        <item>Velocidad promedio</item>
+        <item>Calorias</item>
     </string-array>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDIYP_jPhVudZeunfDab0xt9Qor2TPCx50</string>
-    <string name="start_text">Start</string>
-    <string name="stop_text">Stop</string>
 
-    <string name="btn_finish_run">Finish Run</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDIYP_jPhVudZeunfDab0xt9Qor2TPCx50</string>
+
+    <string name="start_text">Iniciar</string>
+    <string name="stop_text">Pausar</string>
+    <string name="btn_finish_run">Finalizar ruta</string>
     <string name="timer_placeholder">00:00:00:00</string>
-    <string name="lets_go_default">Let\'s go!</string>
-    <string name="cd_map_view">Google Map showing your current running path</string>
+
+    <string name="live_distance_label">Distancia</string>
+    <string name="live_distance_placeholder">0.00 km</string>
+    <string name="live_speed_label">Vel. prom.</string>
+    <string name="live_speed_placeholder">0.0 km/h</string>
+    <string name="live_calories_label">Calorias</string>
+    <string name="live_calories_placeholder">0 kcal</string>
+    <string name="live_calories_value">%1$d kcal</string>
+
+    <string name="goal_type_distance">Distancia</string>
+    <string name="goal_type_time">Tiempo</string>
+    <string name="goal_type_calories">Calorias</string>
+    <string name="goal_value_hint">Meta: km, minutos o kcal</string>
+    <string name="goal_distance_value_hint">Meta en kilometros</string>
+    <string name="goal_time_value_hint">Toca para elegir horas y minutos</string>
+    <string name="goal_calories_value_hint">Meta en kcal</string>
+    <string name="goal_time_picker_title">Selecciona duracion de la meta</string>
+    <string name="goal_time_hours_minutes">%1$d h %2$d min</string>
+    <string name="goal_time_hours">%1$d h</string>
+    <string name="goal_time_minutes">%1$d min</string>
+    <string name="goal_progress_empty">Define una meta antes de iniciar.</string>
+    <string name="goal_progress_format">%1$s: %2$s / %3$s (%4$d%%)</string>
+    <string name="goal_reached_format">Meta alcanzada: %1$s</string>
+    <string name="goal_notification_title">Meta de entrenamiento completada</string>
+    <string name="goal_invalid_message">Ingresa una meta valida mayor que cero.</string>
+
+    <string name="history_goal_none">Sin meta guardada</string>
+    <string name="history_goal_status">Meta: %1$s %2$s - %3$s</string>
+    <string name="history_goal_achieved">Cumplida</string>
+    <string name="history_goal_pending">No cumplida</string>
+
+    <string name="run_summary_title">Resumen del entrenamiento</string>
+    <string name="run_summary_saved">Entrenamiento guardado correctamente.</string>
+    <string name="run_summary_close">Cerrar</string>
+    <string name="run_summary_distance">Distancia: %1$s</string>
+    <string name="run_summary_time">Tiempo: %1$s</string>
+    <string name="run_summary_avg_speed">Velocidad promedio: %1$s</string>
+    <string name="run_summary_calories">Calorias: %1$s</string>
+    <string name="run_summary_goal">Meta: %1$s</string>
+
+    <string name="location_permission_required">Se requiere permiso de ubicacion para iniciar el entrenamiento.</string>
+    <string name="run_too_short_message">Entrena al menos unos segundos antes de finalizar.</string>
+    <string name="run_no_distance_message">Aun no hay distancia GPS suficiente para guardar la ruta.</string>
+    <string name="map_not_ready_message">El mapa aun esta cargando. Intenta de nuevo en un momento.</string>
+
+    <string name="lets_go_default">Vamos!</string>
+    <string name="toolbar_lets_go">Vamos, %1$s!</string>
+    <string name="cd_map_view">Mapa de Google mostrando tu ruta actual</string>
+    <string name="cd_route_detail_map">Mapa de Google mostrando la ruta guardada</string>
+    <string name="route_detail_no_points">Esta ruta no tiene puntos GPS guardados.</string>
+    <string name="notification_tracking_title">Entrenamiento en curso</string>
+    <string name="permission_request_message">Acepta los permisos de ubicacion y notificaciones para usar la app correctamente.</string>
+    <string name="delete_run_success">Ruta eliminada correctamente</string>
+    <string name="undo">Deshacer</string>
+    <string name="save_changes_success">Cambios guardados</string>
+    <string name="fill_all_fields">Completa todos los campos.</string>
+
+    <string name="cancel_run_title">Cancelar ruta?</string>
+    <string name="cancel_run_message">Seguro que quieres cancelar la ruta actual y eliminar sus datos?</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="cancel_run_menu">Cancelar ruta</string>
+
+    <string name="stats_total_distance">Distancia total</string>
+    <string name="stats_total_time">Tiempo total</string>
+    <string name="stats_total_calories">Calorias totales</string>
+    <string name="stats_average_speed">Velocidad promedio</string>
+    <string name="stats_chart_description">Velocidad promedio por ruta</string>
+    <string name="stats_no_runs_chart">Aun no hay rutas para graficar.</string>
 </resources>

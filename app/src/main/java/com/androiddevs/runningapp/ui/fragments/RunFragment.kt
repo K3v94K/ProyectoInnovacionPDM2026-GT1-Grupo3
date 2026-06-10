@@ -46,6 +46,13 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
         rvRuns = view.findViewById(R.id.rvRuns)
 
         runAdapter = RunAdapter()
+        runAdapter.setOnItemClickListener { run ->
+            val runId = run.id ?: return@setOnItemClickListener
+            findNavController().navigate(
+                R.id.action_runFragment2_to_runDetailFragment,
+                Bundle().apply { putInt("runId", runId) }
+            )
+        }
 
         setupRecyclerView()
         requestPermissions()
@@ -104,8 +111,8 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
             val position = viewHolder.layoutPosition
             val run = runAdapter.differ.currentList[position]
             viewModel.deleteRun(run)
-            Snackbar.make(requireView(), "Successfully deleted run", Snackbar.LENGTH_LONG).apply {
-                setAction("Undo") {
+            Snackbar.make(requireView(), getString(R.string.delete_run_success), Snackbar.LENGTH_LONG).apply {
+                setAction(getString(R.string.undo)) {
                     viewModel.insertRun(run)
                 }
                 show()
@@ -130,17 +137,13 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
             Manifest.permission.ACCESS_COARSE_LOCATION
         )
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            permissionsList.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-        }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             permissionsList.add(Manifest.permission.POST_NOTIFICATIONS)
         }
 
         EasyPermissions.requestPermissions(
             this,
-            "You need to accept location and notification permissions to use this app properly.",
+            getString(R.string.permission_request_message),
             REQUEST_CODE_LOCATION_PERMISSION,
             *permissionsList.toTypedArray()
         )

@@ -4,6 +4,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androiddevs.runningapp.db.Run
+import com.androiddevs.runningapp.db.RunPoint
 import com.androiddevs.runningapp.other.SortType
 import com.androiddevs.runningapp.repositories.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel // 🌟 NUEVO: Importación moderna de Hilt
@@ -72,7 +73,13 @@ class MainViewModel @Inject constructor( // 🌟 CORREGIDO: Sintaxis estándar @
         mainRepository.insertRun(run)
     }
 
+    fun insertRunWithPoints(run: Run, points: List<RunPoint>) = viewModelScope.launch {
+        mainRepository.insertRunWithPoints(run, points)
+    }
+
     fun deleteRun(run: Run) = viewModelScope.launch {
         mainRepository.deleteRun(run)
     }
+
+    fun getRunPoints(runId: Int) = mainRepository.getRunPoints(runId)
 }

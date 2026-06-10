@@ -7,6 +7,6 @@
         android:icon="@drawable/ic_close_white"
         app:showAsAction="always"
         android:visible="false"
-        android:title="Cancel Run" />
+        android:title="@string/cancel_run_menu" />
 
 </menu>

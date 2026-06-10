@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Welcome!\nPlease enter your name and weight." />
+        tools:text="Bienvenido!\nIngresa tu nombre y peso." />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilName"

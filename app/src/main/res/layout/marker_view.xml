@@ -15,7 +15,7 @@
             android:id="@+id/tvDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DATE"
+            android:text="FECHA"
             android:textSize="20sp"
             android:gravity="center"/>
 
@@ -23,7 +23,7 @@
             android:id="@+id/tvDuration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DURATION"
+            android:text="DURACION"
             android:textSize="20sp"
             android:gravity="center"/>
 
@@ -31,7 +31,7 @@
             android:id="@+id/tvAvgSpeed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="AVG SPEED"
+            android:text="VEL. PROM."
             android:textSize="20sp"
             android:gravity="center"/>
 
@@ -39,7 +39,7 @@
             android:id="@+id/tvDistance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DISTANCE"
+            android:text="DISTANCIA"
             android:textSize="20sp"
             android:gravity="center"/>
 
@@ -47,7 +47,7 @@
             android:id="@+id/tvCaloriesBurned"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CALORIES BURNED"
+            android:text="CALORIAS"
             android:textSize="20sp"
             android:gravity="center"/>
 

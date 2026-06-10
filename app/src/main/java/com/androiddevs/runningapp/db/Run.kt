@@ -12,7 +12,10 @@ data class Run(
     var avgSpeedInKMH: Float = 0f,
     var distanceInMeters: Int = 0,
     var timeInMillis: Long = 0,
-    var caloriesBurned: Int = 0
+    var caloriesBurned: Int = 0,
+    var goalType: String = "",
+    var goalValue: Float = 0f,
+    var goalAchieved: Boolean = false
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
