@@ -1,0 +1,29 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Plugin de Android moderno compatible con Gradle 8
+        classpath 'com.android.tools.build:gradle:8.4.2'
+        // Versión de Kotlin estable compatible con tu entorno
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21"
+        // Navegación segura corregida
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.7.7"
+        // Dagger Hilt moderno y estable
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.51.1"
+        classpath "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.0.21-1.0.25"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral() // Reemplaza al viejo jcenter() que ya no existe
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
