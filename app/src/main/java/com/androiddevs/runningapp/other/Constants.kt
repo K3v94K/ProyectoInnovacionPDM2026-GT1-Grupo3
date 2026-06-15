@@ -11,42 +11,42 @@ class Constants {
 
         const val REQUEST_CODE_LOCATION_PERMISSION = 0
 
-        // Database
+        // Base de datos
         const val DATABASE_NAME = "running_db"
 
-        // Tracking Options
+        // Opciones de seguimiento GPS
         const val LOCATION_UPDATE_INTERVAL = 5000L
         const val FASTEST_LOCATION_UPDATE_INTERVAL = 2000L
         const val MAX_ACCEPTABLE_LOCATION_ACCURACY = 25f
         const val MIN_DISTANCE_BETWEEN_ROUTE_POINTS = 4f
 
-        // Map Options
+        // Opciones del mapa
         const val POLYLINE_COLOR = Color.RED
         const val POLYLINE_WIDTH = 8f
         const val MAP_ZOOM = 15f
 
-        // Timer
+        // Temporizador
         const val TIMER_UPDATE_INTERVAL = 50L
 
-        // LineChart
+        // Grafica de lineas
         val LINE_DATA_MODE = LineDataSet.Mode.CUBIC_BEZIER
 
-        // MapView
+        // Vista del mapa
         const val MAP_VIEW_HEIGHT_IN_DP = 200f
 
-        // Notifications
+        // Notificaciones
         const val NOTIFICATION_CHANNEL_ID = "tracking_channel"
         const val NOTIFICATION_CHANNEL_NAME = "Tracking"
         const val NOTIFICATION_ID = 1
         const val GOAL_REACHED_NOTIFICATION_ID = 2
 
-        // Shared Preferences
+        // Preferencias locales del usuario
         const val SHARED_PREFERENCES_NAME = "sharedPref"
         const val KEY_NAME = "KEY_NAME"
         const val KEY_WEIGHT = "KEY_WEIGHT"
         const val KEY_FIRST_TIME_TOGGLE = "KEY_FIRST_TIME_TOGGLE"
 
-        // Service Intent Actions
+        // Acciones enviadas al servicio de seguimiento
         const val ACTION_SHOW_TRACKING_FRAGMENT = "ACTION_SHOW_TRACKING_FRAGMENT"
         const val ACTION_START_OR_RESUME_SERVICE = "ACTION_START_SERVICE"
         const val ACTION_PAUSE_SERVICE = "ACTION_PAUSE_SERVICE"

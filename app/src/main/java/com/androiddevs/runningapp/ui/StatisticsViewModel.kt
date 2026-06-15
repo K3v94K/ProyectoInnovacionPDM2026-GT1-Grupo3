@@ -2,11 +2,11 @@ package com.androiddevs.runningapp.ui
 
 import androidx.lifecycle.ViewModel
 import com.androiddevs.runningapp.repositories.MainRepository
-import dagger.hilt.android.lifecycle.HiltViewModel // 🌟 NUEVO: Importación moderna de Hilt
-import javax.inject.Inject // 🌟 NUEVO: Usamos el inyector estándar
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-@HiltViewModel // 🌟 CORREGIDO: Anotación moderna de Hilt para ViewModels
-class StatisticsViewModel @Inject constructor( // 🌟 CORREGIDO: Sintaxis estándar @Inject constructor
+@HiltViewModel
+class StatisticsViewModel @Inject constructor(
     mainRepository: MainRepository
 ) : ViewModel() {
 

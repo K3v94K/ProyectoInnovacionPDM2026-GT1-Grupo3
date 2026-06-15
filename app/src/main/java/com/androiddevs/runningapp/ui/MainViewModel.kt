@@ -7,13 +7,13 @@ import com.androiddevs.runningapp.db.Run
 import com.androiddevs.runningapp.db.RunPoint
 import com.androiddevs.runningapp.other.SortType
 import com.androiddevs.runningapp.repositories.MainRepository
-import dagger.hilt.android.lifecycle.HiltViewModel // 🌟 NUEVO: Importación moderna de Hilt
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject // 🌟 NUEVO: Usamos el inyector estándar de Java/Kotlin
+import javax.inject.Inject
 
-@HiltViewModel // 🌟 CORREGIDO: Anotación obligatoria para ViewModels en Hilt moderno
-class MainViewModel @Inject constructor( // 🌟 CORREGIDO: Sintaxis estándar @Inject constructor
+@HiltViewModel
+class MainViewModel @Inject constructor(
     val mainRepository: MainRepository
 ) : ViewModel() {
 
@@ -28,7 +28,7 @@ class MainViewModel @Inject constructor( // 🌟 CORREGIDO: Sintaxis estándar @
     var sortType = SortType.DATE
 
     /**
-     * Posts the correct run list in the LiveData
+     * Publica en LiveData la lista de carreras segun el orden seleccionado.
      */
     init {
         runs.addSource(runsSortedByDate) { result ->

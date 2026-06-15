@@ -12,7 +12,7 @@ class TrackingUtility {
 
     companion object {
         /**
-         * Checks if the user accepted the necessary location permissions or not
+         * Verifica si el usuario concedio los permisos necesarios de ubicacion.
          */
         fun hasLocationPermissions(context: Context): Boolean {
             return EasyPermissions.hasPermissions(
@@ -23,8 +23,7 @@ class TrackingUtility {
         }
 
         /**
-         * Takes an amount of milliseconds and converts it to a formatted string, optionally
-         * with milliseconds
+         * Convierte milisegundos en texto de cronometro, con milisegundos opcionales.
          */
         fun getFormattedStopWatchTime(ms: Long, includeMillis: Boolean = false): String {
             var milliseconds = ms
@@ -47,7 +46,7 @@ class TrackingUtility {
         }
 
         /**
-         * Calculates the length of a specific polyline
+         * Calcula la distancia total de una polilinea usando sus puntos GPS.
          */
         fun calculatePolylineLength(polyline: Polyline): Float {
             var distance = 0f

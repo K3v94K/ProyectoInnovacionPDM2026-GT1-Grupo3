@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Converter class to save bitmaps in the Room Database
+ * Convierte imagenes Bitmap a ByteArray y viceversa para guardarlas en Room.
  */
 class Converters {
 

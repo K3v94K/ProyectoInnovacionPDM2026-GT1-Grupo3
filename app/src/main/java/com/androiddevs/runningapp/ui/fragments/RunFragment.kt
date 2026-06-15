@@ -32,7 +32,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
 
     private val viewModel: MainViewModel by viewModels()
 
-    // 🌟 NUEVO: Declaramos las referencias locales de las vistas para usarlas en todo el ciclo
+    // Referencias a las vistas principales del historial.
     private lateinit var fab: FloatingActionButton
     private lateinit var spFilter: Spinner
     private lateinit var rvRuns: RecyclerView
@@ -40,7 +40,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 🌟 CORREGIDO: Mapeo manual de las vistas pasándole la raíz 'view'
+        // Vincula las vistas del historial desde la raiz del fragmento.
         fab = view.findViewById(R.id.fab)
         spFilter = view.findViewById(R.id.spFilter)
         rvRuns = view.findViewById(R.id.rvRuns)
@@ -94,7 +94,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
     }
 
     /**
-     * Handles swipe-to-delete
+     * Permite eliminar carreras del historial con gesto lateral y ofrece deshacer.
      */
     private val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
         ItemTouchHelper.UP or ItemTouchHelper.DOWN, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
@@ -131,7 +131,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
             return
         }
 
-        // 🌟 CORREGIDO: Añadimos soporte para solicitar notificaciones en Android 13, 14 y 15 (API 33+)
+        // En Android 13 o superior tambien se solicita permiso para notificaciones.
         val permissionsList = mutableListOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION

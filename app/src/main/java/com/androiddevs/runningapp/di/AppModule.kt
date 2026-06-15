@@ -18,7 +18,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 /**
- * AppModule, provides application wide singletons
+ * Provee dependencias compartidas por toda la aplicacion, como Room y SharedPreferences.
  */
 @Module
 @InstallIn(SingletonComponent::class)

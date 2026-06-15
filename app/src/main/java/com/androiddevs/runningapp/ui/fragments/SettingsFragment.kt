@@ -3,10 +3,10 @@ package com.androiddevs.runningapp.ui.fragments
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import android.widget.Button // 🌟 NUEVO
-import android.widget.EditText // 🌟 NUEVO
-import android.widget.TextView // 🌟 NUEVO
-import androidx.appcompat.widget.Toolbar // 🌟 NUEVO
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.androiddevs.runningapp.R
 import com.androiddevs.runningapp.other.Constants.Companion.KEY_NAME
@@ -24,7 +24,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 🌟 CORREGIDO: Encontrar las vistas locales pasándole la raíz 'view'
+        // Obtiene los campos de ajustes para cargar y guardar datos del usuario.
         val etName = view.findViewById<EditText>(R.id.etName)
         val etWeight = view.findViewById<EditText>(R.id.etWeight)
         val btnApplyChanges = view.findViewById<Button>(R.id.btnApplyChanges)
@@ -41,7 +41,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
     }
 
-    // 🌟 CORREGIDO: Ahora recibe las referencias explícitas de los EditText
+    // Carga en pantalla los datos guardados previamente.
     private fun loadFieldsFromSharedPref(etName: EditText, etWeight: EditText) {
         val name = sharedPref.getString(KEY_NAME, "")
         val weight = sharedPref.getFloat(KEY_WEIGHT, 80f)
@@ -49,7 +49,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         etWeight.setText(weight.toString())
     }
 
-    // 🌟 CORREGIDO: Ahora procesa las vistas de forma segura e independiente
+    // Valida los campos y actualiza las preferencias locales.
     private fun applyChangesToSharedPref(etName: EditText, etWeight: EditText): Boolean {
         val nameText = etName.text.toString()
         val weightText = etWeight.text.toString()
@@ -66,7 +66,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
         val toolbarText = getString(R.string.toolbar_lets_go, nameText)
 
-        // 🌟 CORREGIDO: Encontramos la Toolbar y su TextView de manera segura y sin Synthetics
+        // Actualiza el saludo de la barra superior despues de guardar el nombre.
         activity?.findViewById<Toolbar>(R.id.toolbar)?.let { toolbar ->
             val tvToolbarTitle = toolbar.findViewById<TextView>(R.id.tvToolbarTitle)
             tvToolbarTitle?.text = toolbarText

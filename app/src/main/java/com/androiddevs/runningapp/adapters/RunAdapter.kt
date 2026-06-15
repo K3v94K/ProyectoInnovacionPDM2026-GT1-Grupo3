@@ -3,8 +3,8 @@ package com.androiddevs.runningapp.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView // 🌟 NUEVO
-import android.widget.TextView  // 🌟 NUEVO
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +12,6 @@ import com.androiddevs.runningapp.R
 import com.androiddevs.runningapp.db.Run
 import com.androiddevs.runningapp.other.TrackingUtility
 import com.bumptech.glide.Glide
-// 🌟 CORREGIDO: Se eliminó el import obsoleto de kotlinx.android.synthetic
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -57,7 +56,7 @@ class RunAdapter : RecyclerView.Adapter<RunAdapter.RunViewHolder>() {
     override fun onBindViewHolder(holder: RunViewHolder, position: Int) {
         val run = differ.currentList[position]
 
-        // 🌟 CORREGIDO: Búsqueda explícita de vistas para total compatibilidad con Kotlin moderno
+        // Obtiene las vistas del item para mostrar la informacion de cada carrera.
         val ivRunImage = holder.itemView.findViewById<ImageView>(R.id.ivRunImage)
         val tvDate = holder.itemView.findViewById<TextView>(R.id.tvDate)
         val tvAvgSpeed = holder.itemView.findViewById<TextView>(R.id.tvAvgSpeed)
@@ -66,7 +65,7 @@ class RunAdapter : RecyclerView.Adapter<RunAdapter.RunViewHolder>() {
         val tvCalories = holder.itemView.findViewById<TextView>(R.id.tvCalories)
         val tvGoalStatus = holder.itemView.findViewById<TextView>(R.id.tvGoalStatus)
 
-        // Asignación de datos a las vistas encontradas
+        // Asigna los datos guardados a la tarjeta del historial.
         if (run.img != null) {
             Glide.with(holder.itemView.context).load(run.img).into(ivRunImage)
         } else {

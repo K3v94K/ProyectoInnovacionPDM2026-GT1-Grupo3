@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         navHostFragment?.let { host ->
             bottomNavigationView.setupWithNavController(host.navController)
 
-            bottomNavigationView.setOnNavigationItemReselectedListener { /* NO-OP */ }
+            bottomNavigationView.setOnNavigationItemReselectedListener { /* Sin accion al reseleccionar. */ }
 
             host.navController.addOnDestinationChangedListener { _, destination, _ ->
                 when (destination.id) {
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         requestNotificationPermissionIfNeeded()
     }
 
-    // Checks if we launched the activity from the notification
+    // Revisa si la actividad fue abierta desde la notificacion de seguimiento.
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         navigateToTrackingFragmentIfNeeded(intent)

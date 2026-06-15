@@ -161,7 +161,7 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
 
         mapView.getMapAsync { googleMap ->
             map = googleMap
-            // 🌟 NUEVO: Habilita el punto azul de GPS y el botón de centrado nativo en tu teléfono
+            // Habilita el punto azul de GPS y el boton nativo para centrar ubicacion.
             try {
                 map?.isMyLocationEnabled = true
                 map?.uiSettings?.isMyLocationButtonEnabled = true

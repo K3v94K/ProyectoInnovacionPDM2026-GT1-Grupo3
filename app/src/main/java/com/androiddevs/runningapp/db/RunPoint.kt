@@ -5,6 +5,12 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
+/**
+ * Punto GPS asociado a una carrera guardada.
+ *
+ * runId enlaza el punto con la carrera principal, segmentIndex separa tramos
+ * cuando el usuario pausa/reanuda y pointIndex conserva el orden del recorrido.
+ */
 @Entity(
     tableName = "run_points",
     foreignKeys = [

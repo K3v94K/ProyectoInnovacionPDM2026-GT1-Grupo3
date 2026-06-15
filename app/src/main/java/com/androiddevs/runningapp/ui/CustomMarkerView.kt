@@ -2,20 +2,19 @@ package com.androiddevs.runningapp.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.widget.TextView // 🌟 NUEVO: Importación requerida para las vistas
-import com.androiddevs.runningapp.R // 🌟 NUEVO: Asegura el acceso a los IDs del layout
+import android.widget.TextView
+import com.androiddevs.runningapp.R
 import com.androiddevs.runningapp.db.Run
 import com.androiddevs.runningapp.other.TrackingUtility
 import com.github.mikephil.charting.components.MarkerView
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.utils.MPPointF
-//CORREGIDO: Se eliminaron por completo todos los imports obsoletos de kotlinx.android.synthetic
 import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Pop-up window, when we click on a bar in the bar chart
+ * Ventana emergente que muestra el detalle de una carrera en la grafica.
  */
 @SuppressLint("ViewConstructor")
 class CustomMarkerView(
@@ -30,14 +29,14 @@ class CustomMarkerView(
         }
         val curRunId = e.x.toInt()
 
-        // Evita un posible Crash si el índice del gráfico se desfasa de la lista de la BD
+        // Evita un cierre inesperado si el indice del grafico no coincide con la lista.
         if (curRunId < 0 || curRunId >= runs.size) {
             return
         }
 
         val run = runs[curRunId]
 
-        // 🌟 CORREGIDO: Vinculación manual de vistas compatible con Kotlin moderno
+        // Vincula las vistas del marcador para presentar las metricas seleccionadas.
         val tvDate = findViewById<TextView>(R.id.tvDate)
         val tvAvgSpeed = findViewById<TextView>(R.id.tvAvgSpeed)
         val tvDistance = findViewById<TextView>(R.id.tvDistance)

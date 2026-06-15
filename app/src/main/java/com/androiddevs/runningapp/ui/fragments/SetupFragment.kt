@@ -3,7 +3,7 @@ package com.androiddevs.runningapp.ui.fragments
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
-import android.widget.Button // 🌟 NUEVO: Importación para el botón de continuar
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
@@ -30,7 +30,7 @@ class SetupFragment : Fragment(R.layout.fragment_setup) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 🌟 CORREGIDO: Ajustado al ID 'btnContinue' y al tipo 'Button' del nuevo XML
+        // Obtiene los campos necesarios para registrar los datos iniciales del usuario.
         val btnContinue = view.findViewById<Button>(R.id.btnContinue)
         val etName = view.findViewById<EditText>(R.id.etName)
         val etWeight = view.findViewById<EditText>(R.id.etWeight)
@@ -46,7 +46,7 @@ class SetupFragment : Fragment(R.layout.fragment_setup) {
             )
         }
 
-        // 🌟 CORREGIDO: Se asigna el listener al nuevo objeto del botón
+        // Valida y guarda los datos personales antes de entrar al historial.
         btnContinue.setOnClickListener {
             val success = writePersonalDataToSharedPref(etName, etWeight)
             if (success) {
@@ -59,7 +59,7 @@ class SetupFragment : Fragment(R.layout.fragment_setup) {
     }
 
     /**
-     * Saves the name and the weight in shared preferences
+     * Guarda el nombre y el peso del usuario en SharedPreferences.
      */
     private fun writePersonalDataToSharedPref(etName: EditText, etWeight: EditText): Boolean {
         val name = etName.text.toString()

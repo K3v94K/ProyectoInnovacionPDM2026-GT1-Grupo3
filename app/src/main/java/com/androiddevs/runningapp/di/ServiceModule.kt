@@ -3,13 +3,13 @@ package com.androiddevs.runningapp.di
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.os.Build // 🌟 NUEVO: Para validar la versión de Android
+import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.androiddevs.runningapp.R
 import com.androiddevs.runningapp.other.Constants
 import com.androiddevs.runningapp.ui.MainActivity
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices // 🌟 NUEVO: Requerido para la API moderna
+import com.google.android.gms.location.LocationServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +18,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ServiceScoped
 
 /**
- * ServiceModule, provides dependencies for the TrackingService
+ * Provee las dependencias que utiliza TrackingService durante el seguimiento GPS.
  */
 @Module
 @InstallIn(ServiceComponent::class)
@@ -28,7 +28,7 @@ object ServiceModule {
     @Provides
     fun providesFusedLocationProviderClient(
         @ApplicationContext context: Context
-    ) = LocationServices.getFusedLocationProviderClient(context) // 🌟 CORREGIDO: Sintaxis moderna de Google
+    ) = LocationServices.getFusedLocationProviderClient(context)
 
     @ServiceScoped
     @Provides
@@ -48,7 +48,7 @@ object ServiceModule {
     fun provideActivityPendingIntent(
         @ApplicationContext context: Context
     ): PendingIntent {
-        // 🌟 CORREGIDO: Bandera inmutable obligatoria para Android 12, 13 y 14
+        // Usa PendingIntent inmutable en Android moderno por requisitos de seguridad.
         val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         } else {

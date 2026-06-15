@@ -57,6 +57,7 @@ typealias Polylines = MutableList<Polyline>
 @AndroidEntryPoint
 class TrackingService : LifecycleService() {
 
+    // Cronometro interno usado para publicar el tiempo visible de la carrera.
     private val timeRunInSeconds = MutableLiveData<Long>()
 
     private var isFirstRun = true
@@ -67,11 +68,13 @@ class TrackingService : LifecycleService() {
     private var timeStarted = 0L
     private var lastSecondTimestamp = 0L
 
+    // Meta activa enviada por TrackingFragment al iniciar o reanudar la carrera.
     private var activeGoalType = ""
     private var activeGoalValue = 0f
     private var hasGoalReached = false
 
     companion object {
+        // Estado observado por la interfaz para actualizar mapa, metricas y progreso.
         val timeRunInMillis = MutableLiveData<Long>()
         val isTracking = MutableLiveData<Boolean>()
         val pathPoints = MutableLiveData<Polylines>()
@@ -102,6 +105,7 @@ class TrackingService : LifecycleService() {
     }
 
     private fun postInitialValues() {
+        // Reinicia los valores publicos cada vez que el servicio se crea o se detiene.
         timeRunInMillis.postValue(0L)
         isTracking.postValue(false)
         pathPoints.postValue(mutableListOf())
@@ -158,6 +162,7 @@ class TrackingService : LifecycleService() {
     private fun updateLocationChecking(isTracking: Boolean) {
         if (isTracking) {
             if (TrackingUtility.hasLocationPermissions(this)) {
+                // Solicita ubicacion de alta precision para dibujar el recorrido deportivo.
                 val request = LocationRequest.Builder(
                     Priority.PRIORITY_HIGH_ACCURACY,
                     LOCATION_UPDATE_INTERVAL
@@ -221,6 +226,7 @@ class TrackingService : LifecycleService() {
             val pos = LatLng(it.latitude, it.longitude)
             currentLocation.postValue(pos)
 
+            // La ubicacion actual centra el mapa, pero solo puntos confiables entran a la ruta.
             if (!isReliableRoutePoint(it)) {
                 return
             }
@@ -235,6 +241,7 @@ class TrackingService : LifecycleService() {
     }
 
     private fun isReliableRoutePoint(location: Location): Boolean {
+        // Descarta lecturas imprecisas para evitar distancia falsa por deriva del GPS.
         if (location.hasAccuracy() && location.accuracy > MAX_ACCEPTABLE_LOCATION_ACCURACY) {
             return false
         }
@@ -253,6 +260,7 @@ class TrackingService : LifecycleService() {
             distanceFromLastPoint
         )
 
+        // Descarta micro movimientos cuando el usuario esta quieto o bajo techo.
         return distanceFromLastPoint[0] >= MIN_DISTANCE_BETWEEN_ROUTE_POINTS
     }
 
@@ -268,6 +276,7 @@ class TrackingService : LifecycleService() {
     } ?: pathPoints.postValue(mutableListOf(mutableListOf()))
 
     private fun updateGoalFromIntent(intent: Intent) {
+        // La meta se fija al inicio para evitar cambios durante el entrenamiento activo.
         val goalType = intent.getStringExtra(EXTRA_GOAL_TYPE).orEmpty()
         val goalValue = intent.getFloatExtra(EXTRA_GOAL_VALUE, 0f)
         if (goalType.isNotBlank() && goalValue > 0f && activeGoalType.isBlank()) {
@@ -279,6 +288,7 @@ class TrackingService : LifecycleService() {
     }
 
     private fun checkGoalProgress() {
+        // Evita notificar mas de una vez la misma meta.
         if (hasGoalReached || activeGoalType.isBlank() || activeGoalValue <= 0f) {
             return
         }
@@ -310,6 +320,7 @@ class TrackingService : LifecycleService() {
     }
 
     private fun showGoalReachedNotification() {
+        // Android 13+ requiere permiso explicito para publicar notificaciones.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
             ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
         ) {
@@ -352,6 +363,7 @@ class TrackingService : LifecycleService() {
             createNotificationChannel(notificationManager)
         }
 
+        // Mantiene una notificacion persistente mientras el seguimiento esta activo.
         startForeground(NOTIFICATION_ID, curNotification.build())
         startTimer()
         isTracking.postValue(true)
@@ -366,6 +378,7 @@ class TrackingService : LifecycleService() {
     }
 
     private fun updateNotificationTrackingState(isTracking: Boolean) {
+        // Cambia la accion de la notificacion entre pausar y reanudar.
         val notificationActionText = if (isTracking) {
             getString(R.string.stop_text)
         } else {
